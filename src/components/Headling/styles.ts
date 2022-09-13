@@ -2,7 +2,10 @@ import { StyleSheet } from 'react-native';
 import { THEME } from '../../theme';
 
 export const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginTop:28,
+    marginBottom:28,
+  },
   title:{
     color:THEME.COLORS.TEXT,
     fontSize:THEME.FONT_SIZE.LG,

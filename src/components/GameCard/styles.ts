@@ -12,21 +12,26 @@ export const styles = StyleSheet.create({
     justifyContent:'flex-end',
     borderRadius:8,
     overflow:'hidden',
+    position:'relative'
   },
   footer:{
     width:'100%',
     height:182,
     padding:16,
-    justifyContent:'center',
+    justifyContent:'flex-end',
+    position:'absolute',
+    left:0,
+    right:0,
+    bottom:0,
   },
   name:{
     color:THEME.COLORS.TEXT,
     fontSize:THEME.FONT_SIZE.MD,
-    fontFamily:THEME.FONT_FAMILY.BLACK
+    fontFamily:THEME.FONT_FAMILY.BOLD
   },
   ads:{
-    color:THEME.COLORS.CAPTION_400,
-    fontSize:THEME.FONT_SIZE.SM,
+    color:THEME.COLORS.CAPTION_300,
+    fontSize:THEME.FONT_SIZE.MD,
     fontFamily:THEME.FONT_FAMILY.REGULAR
   }
 });
