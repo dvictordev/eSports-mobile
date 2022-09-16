@@ -11,7 +11,8 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { Loading } from "./src/components/Loading";
-import { Home } from "./src/screens/Home";
+
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fonstLoaded] = useFonts({
@@ -24,7 +25,7 @@ export default function App() {
   return (
     <Background>
       <StatusBar style="light" translucent />
-      {fonstLoaded ? <Home /> : <Loading />}
+      {fonstLoaded ? <Routes /> : <Loading />}
     </Background>
   );
 }
