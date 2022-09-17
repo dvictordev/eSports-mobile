@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Image, TouchableOpacity, View, FlatList } from "react-native";
+import { Image, TouchableOpacity, View, FlatList, Text } from "react-native";
 import { Background } from "../../components/Background";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
@@ -61,6 +61,9 @@ export function Game() {
           }}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.contentList}
+          ListEmptyComponent={() => (
+            <Text style={styles.noContent}>Nâo ha anuncios para este jogo</Text>
+          )}
         />
       </SafeAreaView>
     </Background>
