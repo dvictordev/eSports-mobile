@@ -17,9 +17,10 @@ export interface adsProps {
 
 interface Props {
   data: adsProps;
+  onConnect:() => void,
 }
 
-export function AddCard({ data }: Props) {
+export function AddCard({ data, onConnect }: Props) {
   return (
     <View style={styles.container}>
       <AdsInfo label="Name" value={data.name} />
@@ -37,7 +38,7 @@ export function AddCard({ data }: Props) {
       />
 
       <View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={onConnect}  style={styles.button}>
           <Entypo
             style={{ paddingRight: 8 }}
             name="game-controller"

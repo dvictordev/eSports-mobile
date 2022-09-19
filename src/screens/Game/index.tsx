@@ -12,23 +12,35 @@ import { styles } from "./styles";
 import { THEME } from "../../theme";
 import { Headling } from "../../components/Headling";
 import { AddCard, adsProps } from "../../components/AddCard";
+import { DuoMatch } from "../../components/DuoMatch";
 
 export function Game() {
   const [ad, setAd] = useState<adsProps[]>();
+  const [discordUser, setDiscordUser] = useState('')
+
+
+  
   const navigation = useNavigation();
   const route = useRoute();
   const game = route.params as GameParams;
 
+
   function handleBackNavigation() {
     navigation.goBack();
   }
+  
+  function getDiscordUser(asdId:string){
+    fetch(`http://192.168.1.17:3333/ads/${asdId}/discord`)
+      .then(res => res.json())
+      .then(data =>{setDiscordUser(data.discord)})
+  }
+
 
   useEffect(() => {
-    fetch(`http://172.21.248.53:3333/games/${game.id}/ads`)
+    fetch(`http://192.168.1.17:3333/games/${game.id}/ads`)
       .then((res) => res.json())
       .then((data) => {
         setAd(data);
-        console.log(data);
       });
   }, []);
 
@@ -57,7 +69,9 @@ export function Game() {
           data={ad}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
-            return <AddCard data={item} />;
+            return <AddCard 
+              onConnect={ () => getDiscordUser(item.id) }
+              data={item} />;
           }}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.contentList}
@@ -65,7 +79,15 @@ export function Game() {
             <Text style={styles.noContent}>Nâo ha anuncios para este jogo</Text>
           )}
         />
+      <DuoMatch
+       onClose={() => setDiscordUser('')}
+       discord={discordUser} 
+       visible={discordUser.length > 0} 
+       transparent
+       statusBarTranslucent
+       />
       </SafeAreaView>
+
     </Background>
   );
 }
